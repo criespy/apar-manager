@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Apar, Pemeriksaan
 
-# Register your models here.
+admin.site.register([Apar, Pemeriksaan])
+
+

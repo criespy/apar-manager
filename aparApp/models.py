@@ -7,8 +7,11 @@ class Apar(models.Model):
     lokasi = models.CharField(max_length=100)
     jenis = models.CharField(max_length=16)
     ukuran = models.CharField(max_length=12)
-    expired = models.DateField()
-    tanggal_periksa = models.DateField()
+    expired = models.DateField(blank=True, null=True)
+    tanggal_periksa = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return self.lokasi
 
 class Pemeriksaan(models.Model):
     apar = models.ForeignKey(Apar, on_delete=models.CASCADE)
