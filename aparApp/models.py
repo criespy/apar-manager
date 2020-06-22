@@ -15,13 +15,16 @@ class Apar(models.Model):
 
 class Pemeriksaan(models.Model):
     apar = models.ForeignKey(Apar, on_delete=models.CASCADE)
-    tekanan = models.CharField(max_length=10)
-    tabung = models.CharField(max_length=2)
-    pin = models.CharField(max_length=2)
-    handle = models.CharField(max_length=2)
-    label = models.CharField(max_length=2)
-    selang = models.CharField(max_length=2)
-    tanggal = models.DateField()
-    keterangan = models.CharField(max_length=300)
+    tekanan = models.CharField(max_length=10, blank=True, null=True)
+    tabung = models.CharField(max_length=2, blank=True, null=True)
+    pin = models.CharField(max_length=2, blank=True, null=True)
+    handle = models.CharField(max_length=2, blank=True, null=True)
+    label = models.CharField(max_length=2, blank=True, null=True)
+    selang = models.CharField(max_length=2, blank=True, null=True)
+    tanggal = models.DateField(default=timezone.now(), blank=True, null=True)
+    keterangan = models.CharField(max_length=300, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.tanggal)
 
 
