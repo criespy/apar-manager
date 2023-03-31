@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+<div class="row">
+    <div class="col">
+        <img src="{% static 'images/' %}{{ apar.path_foto }}" width="95" height="126">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        NAMA APAR
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <button class="btn btn-primary">Cek Apar</button>
+        <button class="btn btn-primary">History</button>
+    </div>
+</div>
+{% endblock content %}

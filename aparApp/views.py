@@ -1,6 +1,18 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import ListView, UpdateView, DetailView
+from .models import Apar
 
-def index(request):
-    return HttpResponse("Daftar APAR PT. Frina Lestari Nusantara")
+class DashboardHome(ListView):
+    model = Apar
+    template_name = 'dashboard.html'
+    ordering = ['nomor']
+
+class UpdateApar(UpdateView):
+    model = Apar
+
+class ScanMenu(DetailView):
+    model = Apar
+    template_name = 'menu_scan.html'
+    
+
 
