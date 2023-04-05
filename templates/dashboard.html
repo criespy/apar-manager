@@ -12,7 +12,7 @@
             <th scope="col">Expired</th>
             <th scope="col">Pemeriksaan Terakhir</th>
             <th scope="col">Foto di Lokasi</th>
-            <th></th>
+            <th scope="col">Update?</th>
         </tr>
     </thead>
     <tbody>
@@ -40,7 +40,7 @@
             <img src="{% static 'images/' %}{{ apar.path_foto }}" width="95" height="126">
         </td>
         <td>
-            <button>Update Data</button>
+            <a class="btn btn-primary" href="{% url 'updateapar' apar.id %}" >Update</a>
         </td>
     </tr>
     {% endfor %}

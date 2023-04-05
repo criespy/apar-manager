@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2>Update Data APAR</h2>
+    <div class="row">
+        <div class="col">
+            <form>
+                {% csrf_token %}
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <td colspan="2">
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ form.as_table }}
+                    </tbody>
+                    <tr>
+                        <td>
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <a href="{% url 'DashboardHome' %}"  class="btn btn-danger">Cancel</a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="col">
+            
+        </div>
+    </div>
+</div>
+{% endblock content %}

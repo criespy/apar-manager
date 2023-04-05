@@ -1,20 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content%}
-<div class="row">
+<div class="row text-center">
     <div class="col">
-        <img src="{% static 'images/' %}{{ apar.path_foto }}" width="95" height="126">
+        <div class="card" style="width: 20rem;">
+            <img src="{% static 'images/' %}{{ apar.path_foto }}" class="card-img-top">
+            <div class="card-body">
+                <h5>APAR 01</h5>
+                <p class="card-text">Stamping 1</p>
+                <button class="w-100 btn btn-primary">Cek Apar</button>
+                <button class="w-100 btn btn-secondary">History</button>
+            </div>
+        </div>
+        
     </div>
 </div>
 <div class="row">
     <div class="col">
-        NAMA APAR
+
     </div>
 </div>
 <div class="row">
     <div class="col">
-        <button class="btn btn-primary">Cek Apar</button>
-        <button class="btn btn-primary">History</button>
+        
     </div>
 </div>
 {% endblock content %}
