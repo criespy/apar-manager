@@ -14,6 +14,14 @@ class UpdateApar(UpdateView):
     template_name = 'apar_updateview.html'
     form_class = FormUpdateApar
 
+    #def form_valid(self, form):
+        # Get the current value of the 'name' field
+        #current_name = self.object.name
+        
+        # Do something with the current name value...
+        
+        #return super().form_valid(form)
+    
 class ScanMenu(DetailView):
     model = Apar
     template_name = 'menu_scan.html'

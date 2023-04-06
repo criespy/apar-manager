@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.urls import reverse
 
 class Apar(models.Model):
     nomor = models.IntegerField()
@@ -9,11 +10,14 @@ class Apar(models.Model):
     ukuran = models.DecimalField(max_digits=3, decimal_places=1, null=True)
     expired = models.DateField(blank=True, null=True)
     tanggal_periksa = models.DateField(blank=True, null=True)
-    path_foto = models.CharField(max_length=1024, null=True)
+    path_foto = models.ImageField(upload_to='images/%Y%m')
     path_QR = models.CharField(max_length=1024, null=True)
 
     def __str__(self):
         return str(self.nomor) + " - " +  self.lokasi
+    
+    def get_absolute_url(self):
+        return reverse('DashboardHome')
 
 class Pemeriksaan(models.Model):
     apar = models.ForeignKey(Apar, on_delete=models.CASCADE)

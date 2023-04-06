@@ -3,32 +3,36 @@
 {% block content %}
 <div class="container">
     <h2>Update Data APAR</h2>
+</div>
+<br>
+<div class="container">
     <div class="row">
         <div class="col">
-            <form>
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <table class="table table-borderless">
                     <thead>
-                        <tr>
-                            <td colspan="2">
-                            </td>
-                        </tr>
+                    
                     </thead>
                     <tbody>
                         {{ form.as_table }}
                     </tbody>
                     <tr>
                         <td>
+                            
+                        </td>
+                        <td class="text-end">
                             <button type="submit" class="btn btn-success">Save</button>
                             <a href="{% url 'DashboardHome' %}"  class="btn btn-danger">Cancel</a>
                         </td>
                     </tr>
                 </table>
-            </form>
-        </div>
-        <div class="col">
             
         </div>
+        <div class="col">
+            <img src="{{ object.path_foto.url }}" max-width="100%" width="280px" height="390px" class="rounded">
+        </div>
+        </form>
     </div>
 </div>
 {% endblock content %}
