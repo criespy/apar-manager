@@ -2,12 +2,16 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    <h2>Update Data APAR</h2>
+    
 </div>
 <br>
-<div class="container">
+<div class="container shadow px-4 p-4">
+    <h2>Update Data APAR {{ object.nomor }}</h2>
     <div class="row">
-        <div class="col">
+        <div class="col p-3 text-center">
+            <img src="{{ object.path_foto.url }}" max-width="100%" width="280px" height="390px" class="rounded">
+        </div>
+        <div class="col p-3">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <table class="table table-borderless">
@@ -15,12 +19,42 @@
                     
                     </thead>
                     <tbody>
-                        {{ form.as_table }}
+                        {% for field in form %}
+                        <tr>
+                            <td>
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {% if field.field.required %}
+                                    <span class="required">*</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <br><small class="form-text text-muted">{{ field.help_text }}</small>
+                                {% endif %}
+                                {% if field.name == 'path_QR' and form.path_QR.value %}
+                                    <img src="{{ MEDIA_URL }}/media/images/qrcodes/{{ object.path_QR }}.png" alt="{{ form.path_QR.value }}" width="34">
+                                {% endif %}
+                            </td>
+                          </tr>
+                          {% if field.errors %}
+                            <tr>
+                              <td></td>
+                              <td>
+                                <div class="alert alert-danger">
+                                  {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                  {% endfor %}
+                                </div>
+                              </td>
+                            </tr>
+                          {% endif %}
+                        {% endfor %}
                     </tbody>
                     <tr>
-                        <td>
-                            
-                        </td>
+                        <th>
+                           
+                        </th>
                         <td class="text-end">
                             <button type="submit" class="btn btn-success">Save</button>
                             <a href="{% url 'DashboardHome' %}"  class="btn btn-danger">Cancel</a>
@@ -29,10 +63,15 @@
                 </table>
             
         </div>
-        <div class="col">
-            <img src="{{ object.path_foto.url }}" max-width="100%" width="280px" height="390px" class="rounded">
-        </div>
+        
         </form>
     </div>
 </div>
+<script>
+    let nomor_apar = document.getElementById('id_nomor').value;
+    function isiQR(){
+        nomor_apar = document.getElementById('id_nomor').value;
+        document.getElementById('id_path_QR').value = 'FLN_APAR_' + nomor_apar;
+    }
+</script>
 {% endblock content %}

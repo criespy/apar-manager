@@ -7,15 +7,15 @@ class FormUpdateApar(ModelForm):
         model = Apar
         fields = '__all__'
         exclude = ['tanggal_periksa']
-        labels = {'nomor':'Nomor APAR', 'path_foto': 'Gambar APAR'}
+        labels = {'nomor':'Nomor APAR', 'path_foto': 'Gambar APAR', 'ukuran':'Ukuran (Kg)', 'path_QR':'QR Code'}
         widgets = {
-            'nomor': forms.TextInput({'class':'form-control'}),
+            'nomor': forms.TextInput({'class':'form-control', 'onChange':'isiQR()' }),
             'lokasi': forms.TextInput({'class':'form-control'}),
             'jenis': forms.TextInput({'class':'form-control'}),
             'ukuran': forms.TextInput({'class':'form-control'}),
             'expired': forms.TextInput({'class':'form-control'}),
             'tanggal_periksa': forms.TextInput({'class':'form-control'}),
             'path_foto': forms.FileInput({'class':'form-control'}),
-            'path_QR': forms.TextInput({'class':'form-control'}),
+            'path_QR': forms.TextInput({'class':'form-control', 'hidden':'hidden'}),
             }
 
