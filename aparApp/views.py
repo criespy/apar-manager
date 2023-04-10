@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.views.generic import ListView, UpdateView, DetailView
+from django.views.generic import ListView, UpdateView, DetailView, CreateView
 from .models import Apar
 from .forms import *
 import qrcode
@@ -9,6 +9,11 @@ class DashboardHome(ListView):
     model = Apar
     template_name = 'dashboard.html'
     ordering = ['nomor']
+
+class CreateApar(CreateView):
+    model = Apar
+    template_name = 'apar_createview.html'
+    form_class = FormCreateApar
 
 class UpdateApar(UpdateView):
     model = Apar
@@ -46,5 +51,8 @@ class ScanMenu(DetailView):
     model = Apar
     template_name = 'menu_scan.html'
         
-
+class CekApar(CreateView):
+    model = Pemeriksaan
+    template_name = 'pemeriksaan_createview.html'
+    form_class = FormPemeriksaan
 
