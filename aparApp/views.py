@@ -22,7 +22,7 @@ class UpdateApar(UpdateView):
     form_class = FormUpdateApar
 
     def form_valid(self, form):
-        qrcode = "FLN_APAR_" + str(form.cleaned_data['nomor'])
+        qrcode = "fln-apar-" + str(form.cleaned_data['nomor'])
         self.valid_submission_callback(qrcode)
         return super(UpdateApar, self).form_valid(form)
 

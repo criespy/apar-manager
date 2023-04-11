@@ -71,7 +71,12 @@
     let nomor_apar = document.getElementById('id_nomor').value;
     function isiQR(){
         nomor_apar = document.getElementById('id_nomor').value;
-        document.getElementById('id_path_QR').value = 'FLN_APAR_' + nomor_apar;
+        document.getElementById('id_path_QR').value = 'fln-apar-' + nomor_apar;
     }
+    function isiSlug(){
+        document.getElementById('id_slug').value = 'fln-apar-' + nomor_apar;
+    }
+    isiQR();
+    isiSlug();
 </script>
 {% endblock content %}

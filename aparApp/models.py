@@ -12,12 +12,13 @@ class Apar(models.Model):
     tanggal_periksa = models.DateField(blank=True, null=True)
     path_foto = models.ImageField(upload_to='images/%Y%m')
     path_QR = models.CharField(max_length=1024, null=True)
+    slug = models.SlugField(null=True)
 
     def __str__(self):
         return str(self.nomor) + " - " +  self.lokasi
     
     def get_absolute_url(self):
-        return reverse('DashboardHome')
+        return reverse('updateapar', args=[str(self.id)])
 
 class Pemeriksaan(models.Model):
     apar = models.ForeignKey(Apar, on_delete=models.CASCADE)
