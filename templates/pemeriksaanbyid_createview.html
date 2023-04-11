@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="table table-borderless">
+            {{ form.as_table }}
+            disini {{ current_path }}
+            {{ form.babi }}
+            <tr>
+                <th>
+                   
+                </th>
+                <td class="text-end">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a href="{% url 'scanmenu'  %}{{ request.get_full_path }}"  class="btn btn-danger">Cancel</a>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+{% endblock content %}

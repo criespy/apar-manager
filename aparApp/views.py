@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.views.generic import ListView, UpdateView, DetailView, CreateView
-from .models import Apar
+from .models import *
 from .forms import *
 import qrcode
 from pathlib import os
+from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 
 class DashboardHome(ListView):
     model = Apar
@@ -56,3 +58,31 @@ class CekApar(CreateView):
     template_name = 'pemeriksaan_createview.html'
     form_class = FormPemeriksaan
 
+class CekAparById(CreateView):
+    model = Pemeriksaan
+    template_name = 'pemeriksaanbyid_createview.html'
+    form_class = FormPemeriksaanById
+    success_url = reverse_lazy('post_list')
+    #extra_context = {'url':request.get_full_path()}
+
+    def get_initial(self): #digunakan untuk memberikan nilai default di form    
+        apar = get_object_or_404(Apar, slug=self.kwargs.get('slug'))
+        babi = 'babi'
+        return {
+            'apar':apar,
+            'keterangan':apar,
+        }
+    
+    def get_object(self, queryset=None):
+        return queryset.get(slug=self.slug)
+    
+    def get_current_path(self):
+        return {
+        'current_path': self.get_full_path(),
+        'babi': 'babi',
+        }
+
+    
+    #def form_valid(self, form):
+        #form.instance.apar = self.kwargs['apar']
+        #return super(CekAparById, self).form_valid(form)

@@ -50,3 +50,18 @@ class FormPemeriksaan(ModelForm):
             'selang': forms.TextInput({'class':'form-control'}),
             'keterangan': forms.TextInput({'class':'form-control'}),
         }
+
+class FormPemeriksaanById(ModelForm):
+    class Meta:
+        model = Pemeriksaan
+        fields = '__all__'
+        widgets = {
+            'apar': forms.Select({'class':'form-control', 'readonly':'readonly'}),
+            'tekanan': forms.TextInput({'class':'form-control'}),
+            'tabung': forms.TextInput({'class':'form-control'}),
+            'pin': forms.TextInput({'class':'form-control'}),
+            'handle': forms.TextInput({'class':'form-control'}),
+            'label': forms.TextInput({'class':'form-control'}),
+            'selang': forms.TextInput({'class':'form-control'}),
+            'keterangan': forms.TextInput({'class':'form-control'}),
+    }

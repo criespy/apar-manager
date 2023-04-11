@@ -3,12 +3,13 @@
 {% block content%}
 <div class="row text-center">
     <div class="col">
-        <div class="card" style="width: 20rem;">
-            <img src="{% static 'images/' %}{{ apar.path_foto }}" class="card-img-top">
+        <div class="card shadow-sm" style="width: 20rem;">
+            <img src="{{ apar.path_foto.url }}" class="card-img-top">
             <div class="card-body">
-                <h5>APAR 01</h5>
+                <h4>FLN APAR {{ object.nomor }}</h4>
+                <h5>{{ object.name }}</h5>
                 <p class="card-text">Stamping 1</p>
-                <button class="w-100 btn btn-primary">Cek Apar</button>
+                <a class="w-100 btn btn-primary" href="{% url 'cekapar' %}/{{ apar.slug }}">Cek Apar</a>
                 <button class="w-100 btn btn-secondary">History</button>
             </div>
         </div>
