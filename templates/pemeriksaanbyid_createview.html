@@ -2,23 +2,25 @@
 {% load static %}
 {% block content %}
 
-<div class="container">
+<div class="container-fluid p-3">
+    <h4 class="text-uppercase p-3 text-center">Input Pemeriksaan {{current_path}} </h4>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <table class="table table-borderless">
-            {{ form.as_table }}
-            disini {{ current_path }}
-            {{ form.babi }}
-            <tr>
-                <th>
-                   
-                </th>
-                <td class="text-end">
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <a href="{% url 'scanmenu'  %}{{ request.get_full_path }}"  class="btn btn-danger">Cancel</a>
-                </td>
-            </tr>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-borderles">
+                {{ form.as_table }}
+                <tr>
+                    <th>
+                    
+                    </th>
+                    <td class="text-end">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <a href="{% url 'scanmenu'  %}{{ current_path }}"  class="btn btn-danger">Cancel</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
 
     </form>
 </div>

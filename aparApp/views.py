@@ -63,7 +63,7 @@ class CekAparById(CreateView):
     template_name = 'pemeriksaanbyid_createview.html'
     form_class = FormPemeriksaanById
     success_url = reverse_lazy('post_list')
-    #extra_context = {'url':request.get_full_path()}
+    #extra_context = {'url':apar}
 
     def get_initial(self): #digunakan untuk memberikan nilai default di form    
         apar = get_object_or_404(Apar, slug=self.kwargs.get('slug'))
@@ -73,14 +73,36 @@ class CekAparById(CreateView):
             'keterangan':apar,
         }
     
+    def get_context_data(self, **kwargs): #digunakan untuk mengambil url dan mengirimkan nilainya ke template
+        context = super().get_context_data(**kwargs)
+        context['current_path'] = os.path.basename(self.request.get_full_path()) #digabung dengan fungsi os untuk mengambil url bagian terakhir saja
+        context['path_without_query_string'] = self.request.path
+        return context
+
+    
     def get_object(self, queryset=None):
         return queryset.get(slug=self.slug)
     
-    def get_current_path(self):
-        return {
-        'current_path': self.get_full_path(),
-        'babi': 'babi',
-        }
+    #def form_valid(self, form):
+    #    current_path = self.request.get_full_path()
+    #    path_without_query_string = self.request.path
+
+    #    context = {
+    #    'current_path': current_path,
+    #    'path_without_query_string': path_without_query_string,
+    #}
+
+        return context
+    
+    #def get(self, request, *args, **kwargs):
+    #    current_path = request.get_full_path()
+    #    return Httpcurrent_path
+    
+    #def get_current_path(self):
+    #    return {
+    #    'current_path': self.get_full_path(),
+    #    'babi': 'babi',
+    #    }
 
     
     #def form_valid(self, form):

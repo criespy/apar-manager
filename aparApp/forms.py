@@ -55,8 +55,9 @@ class FormPemeriksaanById(ModelForm):
     class Meta:
         model = Pemeriksaan
         fields = '__all__'
+        labels = {'apar':'Nomor APAR'}
         widgets = {
-            'apar': forms.Select({'class':'form-control', 'readonly':'readonly'}),
+            'apar': forms.TextInput({'class':'form-control', 'readonly':'readonly'}),
             'tekanan': forms.TextInput({'class':'form-control'}),
             'tabung': forms.TextInput({'class':'form-control'}),
             'pin': forms.TextInput({'class':'form-control'}),
