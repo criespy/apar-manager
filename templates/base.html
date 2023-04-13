@@ -28,7 +28,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="{% url 'cekapar' %}">Input Pemeriksaan APAR</a></li>
-                  <li><a class="dropdown-item" href="#">Riwayat Pemeriksaan APAR</a></li>
+                  <li><a class="dropdown-item" href="{% url 'cekhistory' %}">Riwayat Pemeriksaan APAR</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{% url 'DashboardHome' %}">Report Pemeriksaan APAR</a></li>
                 </ul>
@@ -67,6 +67,7 @@
     $(document).ready( function () {
     $('#tableApar').DataTable( {
         "pageLength": 5
+
         } );
     } );
 </script>

@@ -48,6 +48,18 @@ class UpdateApar(UpdateView):
         # Do something with the current name value...
         
         #return super().form_valid(form)
+
+class DetailApar(DetailView):
+    model = Apar
+    template_name = 'apar_detailview.html'
+    #form_class = FormDetailApar
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        apar = self.get_object()
+        pemeriksaan_list = Pemeriksaan.objects.filter(apar=apar)
+        context['pemeriksaan_list'] = pemeriksaan_list
+        return context
     
 class ScanMenu(DetailView):
     model = Apar
@@ -58,19 +70,21 @@ class CekApar(CreateView):
     template_name = 'pemeriksaan_createview.html'
     form_class = FormPemeriksaan
 
+class CekAparList(ListView):
+    model = Pemeriksaan
+    template_name = 'pemeriksaan_listview.html'
+
 class CekAparById(CreateView):
     model = Pemeriksaan
     template_name = 'pemeriksaanbyid_createview.html'
     form_class = FormPemeriksaanById
-    success_url = reverse_lazy('post_list')
+    success_url = reverse_lazy('scanmenu')
     #extra_context = {'url':apar}
 
     def get_initial(self): #digunakan untuk memberikan nilai default di form    
         apar = get_object_or_404(Apar, slug=self.kwargs.get('slug'))
-        babi = 'babi'
         return {
             'apar':apar,
-            'keterangan':apar,
         }
     
     def get_context_data(self, **kwargs): #digunakan untuk mengambil url dan mengirimkan nilainya ke template
@@ -80,8 +94,8 @@ class CekAparById(CreateView):
         return context
 
     
-    def get_object(self, queryset=None):
-        return queryset.get(slug=self.slug)
+    #def get_object(self, queryset=None):
+    #    return queryset.get(slug=self.slug)
     
     #def form_valid(self, form):
     #    current_path = self.request.get_full_path()
@@ -92,7 +106,7 @@ class CekAparById(CreateView):
     #    'path_without_query_string': path_without_query_string,
     #}
 
-        return context
+    #    return context
     
     #def get(self, request, *args, **kwargs):
     #    current_path = request.get_full_path()

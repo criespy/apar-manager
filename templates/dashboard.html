@@ -23,13 +23,13 @@
                 {{ apar.nomor }}
             </td>
             <td>
-                {{ apar.lokasi }}
+                <a href="{% url 'detailapar' %}{{ apar.slug }}">{{ apar.lokasi }}</a>
             </td>
             <td>
                 {{ apar.jenis }}
             </td>
             <td>
-                {{ apar.ukuran }}
+                {{ apar.ukuran }} Kg
             </td>
             <td>
                 {{ apar.expired }}
@@ -49,4 +49,12 @@
 
     </table>
 </div>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready( function () {
+    $('#tableApar').DataTable( {
+        "pageLength": 5
+        } );
+    } );
+</script>
 {% endblock content %}

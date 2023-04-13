@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+<div class="table-fluid">
+    <table class="table">
+        <tr>
+            <thead>
+                <td>Tanggal Cek</td>
+                <td>No. APAR / Lokasi</td>
+                <td>Tekanan</td>
+                <td>Tabung</td>
+                <td>Pin</td>
+                <td>Handle</td>
+                <td>Selang</td>
+                <td>Keterangan</td>
+            </thead>
+        </tr>
+        {% for cek in object_list %}
+        <tr>
+            <td>{{ cek.tanggal }}</td>
+            <td>{{ cek.apar }}</td>
+            <td>{{ cek.get_tekanan_display }}</td>
+            <td>{{ cek.get_tabung_display }}</td>
+            <td>{{ cek.get_pin_display }}</td>
+            <td>{{ cek.get_handle_display }}</td>
+            <td>{{ cek.get_selang_display }}</td>
+            <td>{{ cek.keterangan }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock content %}

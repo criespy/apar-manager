@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 class Apar(models.Model):
     nomor = models.IntegerField()
@@ -21,17 +22,33 @@ class Apar(models.Model):
         return reverse('updateapar', args=[str(self.id)])
 
 class Pemeriksaan(models.Model):
+    STATUS_CHOICES = (
+    (True, 'OK'),
+    (False, 'Tidak OK' )
+    )
+    #class Status(models.TextChoices):
+    #    OK = 'OK',_('OK')
+    #    NOT_OK = 'Not OK',_('Not OK')
+
     apar = models.ForeignKey(Apar, on_delete=models.CASCADE)
-    tekanan = models.CharField(max_length=10, blank=True, null=True)
-    tabung = models.CharField(max_length=2, blank=True, null=True)
-    pin = models.CharField(max_length=2, blank=True, null=True)
-    handle = models.CharField(max_length=2, blank=True, null=True)
-    label = models.CharField(max_length=2, blank=True, null=True)
-    selang = models.CharField(max_length=2, blank=True, null=True)
+    tekanan = models.BooleanField(choices=STATUS_CHOICES, default=False)
+    tabung = models.BooleanField(choices=STATUS_CHOICES, default=False)
+    pin = models.BooleanField(choices=STATUS_CHOICES, default=False)
+    handle = models.BooleanField(choices=STATUS_CHOICES, default=False)
+    label = models.BooleanField(choices=STATUS_CHOICES, default=False)
+    selang = models.BooleanField(choices=STATUS_CHOICES, default=False)
     tanggal = models.DateField(auto_now_add=True, blank=True, null=True)
     keterangan = models.CharField(max_length=300, blank=True, null=True)
 
     def __str__(self):
         return str(self.tanggal) + "-" + str(self.apar)
 
+    def get_absolute_url(self):
+        #return reverse('scanmenu', args=[str(self.apar.slug)])
+        return reverse('DashboardHome')
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.apar.tanggal_periksa = self.tanggal
+        self.apar.save()
 
