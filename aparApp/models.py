@@ -49,6 +49,6 @@ class Pemeriksaan(models.Model):
     
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.apar.tanggal_periksa = self.tanggal
+        self.apar.tanggal_periksaa = self.tanggal
         self.apar.save()
 
