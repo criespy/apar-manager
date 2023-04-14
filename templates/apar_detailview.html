@@ -63,34 +63,36 @@
     </div>
     <div class="row p-3">
         <h4>History Pemeriksaan</h4>
-        <table class="table">
-            <tr>
-                <thead>
-                    <td>Tanggal Cek</td>
-                    <td>No. APAR / Lokasi</td>
-                    <td>Tekanan</td>
-                    <td>Tabung</td>
-                    <td>Pin</td>
-                    <td>Handle</td>
-                    <td>Selang</td>
-                    <td>Keterangan</td>
-                </thead>
-            </tr>
-            {% if pemeriksaan_list %}
-            {% for cek in pemeriksaan_list %}
-            <tr>
-                <td>{{ cek.tanggal }}</td>
-                <td>{{ cek.apar }}</td>
-                <td>{{ cek.get_tekanan_display }}</td>
-                <td>{{ cek.get_tabung_display }}</td>
-                <td>{{ cek.get_pin_display }}</td>
-                <td>{{ cek.get_handle_display }}</td>
-                <td>{{ cek.get_selang_display }}</td>
-                <td>{{ cek.keterangan }}</td>
-            </tr>
-            {% endfor %}
-            {% endif %}
-        </table>
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <tr>
+                    <thead>
+                        <td>Tanggal Cek</td>
+                        <td>No. APAR / Lokasi</td>
+                        <td>Tekanan</td>
+                        <td>Tabung</td>
+                        <td>Pin</td>
+                        <td>Handle</td>
+                        <td>Selang</td>
+                        <td>Keterangan</td>
+                    </thead>
+                </tr>
+                {% if pemeriksaan_list %}
+                {% for cek in pemeriksaan_list %}
+                <tr>
+                    <td>{{ cek.tanggal }}</td>
+                    <td>{{ cek.apar }}</td>
+                    <td>{{ cek.get_tekanan_display }}</td>
+                    <td>{{ cek.get_tabung_display }}</td>
+                    <td>{{ cek.get_pin_display }}</td>
+                    <td>{{ cek.get_handle_display }}</td>
+                    <td>{{ cek.get_selang_display }}</td>
+                    <td>{{ cek.keterangan }}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        </div>
     </div>
 </div>
 <script>

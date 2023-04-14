@@ -9,8 +9,8 @@
                 <h4>FLN APAR {{ object.nomor }}</h4>
                 <h5>{{ object.name }}</h5>
                 <p class="card-text">Stamping 1</p>
-                <a class="w-100 btn btn-primary" href="{% url 'cekapar' %}/{{ apar.slug }}">Cek Apar</a>
-                <button class="w-100 btn btn-secondary">History</button>
+                <a class="w-100 btn btn-primary" href="{% url 'cekapar' %}{{ apar.slug }}">Cek Apar</a>
+                <a class="w-100 btn btn-secondary" href="{% url 'detailapar' %}{{ apar.slug }}">History</a>
             </div>
         </div>
         
