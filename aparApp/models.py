@@ -39,7 +39,6 @@ class Pemeriksaan(models.Model):
     selang = models.BooleanField(choices=STATUS_CHOICES, default=False)
     tanggal = models.DateField(auto_now_add=True, blank=True, null=True)
     sign = models.BooleanField(choices=STATUS_CHOICES, default=False)
-    kartu = models.BooleanField(choices=STATUS_CHOICES, default=False)
     keterangan = models.CharField(max_length=300, blank=True, null=True)
 
     def __str__(self):

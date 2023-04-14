@@ -58,6 +58,7 @@ class FormPemeriksaanById(ModelForm):
     handle = forms.BooleanField(required=False)
     label = forms.BooleanField(required=False)
     selang = forms.BooleanField(required=False)
+    sign = forms.BooleanField(required=False)
 
     class Meta:
         model = Pemeriksaan
@@ -71,6 +72,7 @@ class FormPemeriksaanById(ModelForm):
             'handle': forms.CheckboxInput(),
             'label': forms.CheckboxInput(),
             'selang': forms.CheckboxInput(),
+            'sign': forms.CheckboxInput(),
             'keterangan': forms.TextInput({'class':'form-control'}),
             'apar.path_foto': forms.FileInput({'class':'form-control'}),
     }
