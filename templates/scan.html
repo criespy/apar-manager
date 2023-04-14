@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="container">
+    <div>
+      <div class="bg-light p-5 rounded">
+        <div class="col-sm-8 mx-auto">
+          <h1>Sistem Management APAR</h1>
+          <div>Scan QR APAR</div>
+          <div style="width: 220px" id="reader2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="{% static 'js/html5-qrcode.min.js' %}"></script>
+    <script>
+      function onScanSuccess(decodedText, decodedResult) {
+        decodedResult = 'scan/' + decodedText;
+        location.replace(decodedResult);
+      }
+
+      var html5QrcodeScanner = new Html5QrcodeScanner(
+          "reader2", { fps: 10, qrbox: 180 });
+      html5QrcodeScanner.render(onScanSuccess);
+    </script>
+{% endblock content%}
