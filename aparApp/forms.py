@@ -9,7 +9,7 @@ class FormCreateApar(ModelForm):
         exclude = ['tanggal_periksa']
         labels = {'nomor':'Nomor APAR', 'path_foto': 'Gambar APAR', 'ukuran':'Ukuran (Kg)', 'path_QR':'QR Code'}
         widgets = {
-            'nomor': forms.TextInput({'class':'form-control', 'onChange':'isiQR()' }),
+            'nomor': forms.TextInput({'class':'form-control', 'onChange':'isiQR();isiSlug();' }),
             'lokasi': forms.TextInput({'class':'form-control'}),
             'jenis': forms.TextInput({'class':'form-control'}),
             'ukuran': forms.TextInput({'class':'form-control'}),
@@ -17,6 +17,7 @@ class FormCreateApar(ModelForm):
             'tanggal_periksa': forms.TextInput({'class':'form-control'}),
             'path_foto': forms.FileInput({'class':'form-control'}),
             'path_QR': forms.TextInput({'class':'form-control', 'hidden':'hidden'}),
+            'slug': forms.TextInput({'class':'form-control', 'onChange':'isiQR()', 'readonly':'readonly'}),
             }
 
 class FormUpdateApar(ModelForm):
@@ -34,6 +35,7 @@ class FormUpdateApar(ModelForm):
             'tanggal_periksa': forms.TextInput({'class':'form-control'}),
             'path_foto': forms.FileInput({'class':'form-control'}),
             'path_QR': forms.TextInput({'class':'form-control', 'hidden':'hidden'}),
+            'slug': forms.TextInput({'class':'form-control', 'onChange':'isiQR()', 'readonly':'readonly'}),
             }
 
 class FormPemeriksaan(ModelForm):
