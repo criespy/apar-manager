@@ -7,6 +7,7 @@ name = "pypi"
 django = "*"
 pillow = "*"
 qrcode = "*"
+django-resized = "*"
 
 [dev-packages]
 

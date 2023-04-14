@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django_resized import ResizedImageField
 
 class Apar(models.Model):
     nomor = models.IntegerField()
@@ -11,7 +12,7 @@ class Apar(models.Model):
     ukuran = models.DecimalField(max_digits=3, decimal_places=1, null=True)
     expired = models.DateField(blank=True, null=True)
     tanggal_periksa = models.DateField(blank=True, null=True)
-    path_foto = models.ImageField(upload_to='images/%Y%m')
+    path_foto = ResizedImageField(size=[280, 390],upload_to='images/%Y%m',default='images/202304/apar.jpg')
     path_QR = models.CharField(max_length=1024, null=True)
     slug = models.SlugField(null=True)
 

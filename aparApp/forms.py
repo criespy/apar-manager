@@ -37,18 +37,28 @@ class FormUpdateApar(ModelForm):
             }
 
 class FormPemeriksaan(ModelForm):
+    tekanan = forms.BooleanField(required=False)
+    tabung = forms.BooleanField(required=False)
+    pin = forms.BooleanField(required=False)
+    handle = forms.BooleanField(required=False)
+    label = forms.BooleanField(required=False)
+    selang = forms.BooleanField(required=False)
+    sign = forms.BooleanField(required=False)
+
     class Meta:
         model = Pemeriksaan
         fields = '__all__'
         widgets = {
             'apar': forms.Select({'class':'form-control form-select'}),
-            'tekanan': forms.TextInput({'class':'form-control'}),
-            'tabung': forms.TextInput({'class':'form-control'}),
-            'pin': forms.TextInput({'class':'form-control'}),
-            'handle': forms.TextInput({'class':'form-control'}),
-            'label': forms.TextInput({'class':'form-control'}),
-            'selang': forms.TextInput({'class':'form-control'}),
+            'tekanan': forms.CheckboxInput(),
+            'tabung': forms.CheckboxInput(),
+            'pin': forms.CheckboxInput(),
+            'handle': forms.CheckboxInput(),
+            'label': forms.CheckboxInput(),
+            'selang': forms.CheckboxInput(),
+            'sign': forms.CheckboxInput(),
             'keterangan': forms.TextInput({'class':'form-control'}),
+            'apar.path_foto': forms.FileInput({'class':'form-control'}),
         }
 
 class FormPemeriksaanById(ModelForm):

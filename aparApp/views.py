@@ -73,13 +73,15 @@ class CekApar(CreateView):
 class CekAparList(ListView):
     model = Pemeriksaan
     template_name = 'pemeriksaan_listview.html'
-
 class CekAparById(CreateView):
     model = Pemeriksaan
     template_name = 'pemeriksaanbyid_createview.html'
     form_class = FormPemeriksaanById
-    success_url = reverse_lazy('scanmenu')
+    #success_url = reverse_lazy('scanmenu', kwargs={'slug':self.slug})
     #extra_context = {'url':apar}
+
+    def get_absolute_url(self):
+        return reverse_lazy('scanmenu', kwargs={'slug':self.slug})
 
     def get_initial(self): #digunakan untuk memberikan nilai default di form    
         apar = get_object_or_404(Apar, slug=self.kwargs.get('slug'))
