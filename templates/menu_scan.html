@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content%}
+{% block content %}
 <div class="row p-4">
     <div class="col-lg-4 d-flex flex-column align-items-center">
-        <div class="card shadow-sm" style="width: 20rem;">
+        <div class="card shadow" style="width: 20rem;">
             <img src="{{ apar.path_foto.url }}" class="card-img-top">
-            <div class="card-body">
+            <div class="card-body text-center">
                 <h4>FLN APAR {{ object.nomor }}</h4>
-                <h5>{{ object.name }}</h5>
-                <p class="card-text">Stamping 1</p>
-                <a class="w-100 btn btn-primary" href="{% url 'cekapar' %}{{ apar.slug }}">Cek Apar</a>
-                <a class="w-100 btn btn-secondary" href="{% url 'detailapar' %}{{ apar.slug }}">History</a>
+                <h5>{{ object.nama }}</h5>
+                <p class="card-text">{{ object.lokasi }}</p>
+                <p><a class="w-100 btn btn-primary" href="{% url 'cekapar' %}{{ apar.slug }}">Cek Apar</a></p>
+                <p><a class="w-100 btn btn-secondary" href="{% url 'detailapar' %}{{ apar.slug }}">History</a></p>
+                
             </div>
         </div>
         
