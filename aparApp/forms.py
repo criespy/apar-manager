@@ -85,8 +85,9 @@ class FormPemeriksaanById(ModelForm):
             'label': forms.CheckboxInput(),
             'selang': forms.CheckboxInput(),
             'sign': forms.CheckboxInput(),
-            'keterangan': forms.TextInput({'class':'form-control'}),
-            'apar.path_foto': forms.FileInput({'class':'form-control'}),
+            'keterangan': forms.TextInput({'class':'form-control','value':'testing'}),
+            #'apar.path_foto': forms.FileInput({'class':'form-control'}),
+            'tanggal': forms.TextInput({'class':'form-control'}),
     }
         
 class FormDetailApar(ModelForm):

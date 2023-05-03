@@ -76,6 +76,7 @@ class CekApar(CreateView):
 class CekAparList(ListView):
     model = Pemeriksaan
     template_name = 'pemeriksaan_listview.html'
+    
 class CekAparById(CreateView):
     model = Pemeriksaan
     template_name = 'pemeriksaanbyid_createview.html'
