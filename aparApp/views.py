@@ -60,7 +60,7 @@ class DetailApar(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         apar = self.get_object()
-        pemeriksaan_list = Pemeriksaan.objects.filter(apar=apar)
+        pemeriksaan_list = Pemeriksaan.objects.filter(apar=apar).order_by('-tanggal')
         context['pemeriksaan_list'] = pemeriksaan_list
         return context
     
