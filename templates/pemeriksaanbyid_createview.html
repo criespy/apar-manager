@@ -9,10 +9,16 @@
         <div class="table-responsive">
             <table class="table table-borderles">
                 {{ form.as_table }}
+                <!--tr>
+                    <th></th>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Update Foto APAR
+                        </button>
+                    </td>
+                </tr-->
                 <tr>
-                    <th>
-                    
-                    </th>
+                    <th></th>
                     <td class="text-end">
                         <button type="submit" class="btn btn-success">Save</button>
                         <a href="{% url 'scanmenu'  %}{{ current_path }}"  class="btn btn-danger">Cancel</a>
@@ -20,6 +26,24 @@
                 </tr>
             </table>
         </div>
+        <!-- Modal -->
+        <!--div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Foto APAR</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            </div>
+        </div-->
 
 
     </form>

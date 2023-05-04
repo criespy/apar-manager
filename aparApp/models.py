@@ -41,16 +41,18 @@ class Pemeriksaan(models.Model):
     tanggal = models.DateField(auto_now_add=True, blank=True, null=True)
     sign = models.BooleanField(choices=STATUS_CHOICES, default=False)
     keterangan = models.CharField(max_length=300, blank=True, null=True)
+    path_foto = ResizedImageField(size=[280, 390],upload_to='images/%Y%m',default='images/202304/apar.jpg')
 
     def __str__(self):
         return str(self.tanggal) + "-" + str(self.apar)
 
     def get_absolute_url(self):
-        #return reverse('scanmenu', args=[str(self.apar.slug)])
-        return reverse('DashboardHome')
+        return reverse('scanmenu', args=[str(self.apar.slug)])
+        #return reverse('DashboardHome')
     
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.apar.tanggal_periksa = self.tanggal
+        self.apar.path_foto = self.path_foto
         self.apar.save()
 

@@ -64,11 +64,10 @@
     <div class="row p-3">
         <h4>History Pemeriksaan</h4>
         <div class="table-responsive">
-            <table class="table table-sm">
+            <table class="table table-sm table-danger table-striped table-bordered text-center w-auto">
                 <tr>
                     <thead>
-                        <td>Tanggal Cek</td>
-                        <td>No. APAR / Lokasi</td>
+                        <td>Tanggal</td>
                         <td>Tekanan</td>
                         <td>Tabung</td>
                         <td>Pin</td>
@@ -81,7 +80,6 @@
                 {% for cek in pemeriksaan_list %}
                 <tr>
                     <td>{{ cek.tanggal }}</td>
-                    <td>{{ cek.apar }}</td>
                     <td>{{ cek.get_tekanan_display }}</td>
                     <td>{{ cek.get_tabung_display }}</td>
                     <td>{{ cek.get_pin_display }}</td>

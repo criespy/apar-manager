@@ -75,7 +75,7 @@ class FormPemeriksaanById(ModelForm):
     class Meta:
         model = Pemeriksaan
         fields = '__all__'
-        labels = {'apar':'Nomor APAR'}
+        labels = {'apar':'Nomor APAR', 'path_foto':'Foto APAR'}
         widgets = {
             'apar': forms.TextInput({'class':'form-control', 'readonly':'readonly'}),
             'tekanan': forms.CheckboxInput(),
@@ -87,7 +87,8 @@ class FormPemeriksaanById(ModelForm):
             'sign': forms.CheckboxInput(),
             'keterangan': forms.TextInput({'class':'form-control'}),
             #'apar.path_foto': forms.FileInput({'class':'form-control'}),
-            'tanggal': forms.TextInput({'class':'form-control'}),
+            #'tanggal': forms.TextInput({'class':'form-control'}),
+            'path_foto': forms.FileInput({'class':'form-control'}),
     }
         
 class FormDetailApar(ModelForm):
