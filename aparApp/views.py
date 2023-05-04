@@ -111,8 +111,10 @@ class CekAparById(LoginRequiredMixin, CreateView):
 
     def get_initial(self): #digunakan untuk memberikan nilai default di form    
         apar = get_object_or_404(Apar, slug=self.kwargs.get('slug'))
+        user = self.request.user.id
         return {
             'apar':apar,
+            'pemeriksa':user,
         }
     
     def get_context_data(self, **kwargs): #digunakan untuk mengambil url dan mengirimkan nilainya ke template

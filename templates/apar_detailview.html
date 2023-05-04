@@ -74,6 +74,7 @@
                         <td>Handle</td>
                         <td>Selang</td>
                         <td>Keterangan</td>
+                        <td>Pemeriksa</td>
                     </thead>
                 </tr>
                 {% if pemeriksaan_list %}
@@ -86,6 +87,7 @@
                     <td>{{ cek.get_handle_display }}</td>
                     <td>{{ cek.get_selang_display }}</td>
                     <td>{{ cek.keterangan }}</td>
+                    <td>{{ cek.pemeriksa }}</td>
                 </tr>
                 {% endfor %}
                 {% endif %}

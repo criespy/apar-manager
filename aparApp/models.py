@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django_resized import ResizedImageField
+from django.contrib.auth.models import User
 
 class Apar(models.Model):
     nomor = models.IntegerField()
@@ -42,6 +43,7 @@ class Pemeriksaan(models.Model):
     sign = models.BooleanField(choices=STATUS_CHOICES, default=False)
     keterangan = models.CharField(max_length=300, blank=True, null=True)
     path_foto = ResizedImageField(size=[280, 390],upload_to='images/%Y%m',default='images/202304/apar.jpg')
+    pemeriksa = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.tanggal) + "-" + str(self.apar)
