@@ -14,4 +14,6 @@ urlpatterns = [
     path('detail/<slug:slug>', views.DetailApar.as_view(), name='detailapar'),
     path('', views.Scanner.as_view(), name='scanner'),
     #path('scan/', views.ScanMenu.as_view(), name='scanmenu'),
+    path('login/', views.AparLoginView.as_view(), name='login'),
+    path('logout/', views.AparLogoutView.as_view(), name='logout'),
 ]

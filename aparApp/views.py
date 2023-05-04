@@ -6,21 +6,38 @@ import qrcode
 from pathlib import os
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class DashboardHome(ListView):
+class AparLoginView(LoginView):
+    template_name = 'login.html'
+
+redirect_authenticated_user = True
+
+class AparLogoutView(LogoutView):
+    def logout_view(selfrequest):
+        logout(request)
+    template_name = 'login.html'
+    next_page = 'scanner'
+
+class DashboardHome(LoginRequiredMixin, ListView):
+    login_url = 'login'
     model = Apar
     template_name = 'dashboard.html'
     ordering = ['nomor']
 
-class Scanner(TemplateView):
+class Scanner(LoginRequiredMixin, TemplateView):
+    login_url = 'login'
     template_name = 'scan.html'
 
-class CreateApar(CreateView):
+class CreateApar(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = Apar
     template_name = 'apar_createview.html'
     form_class = FormCreateApar
 
-class UpdateApar(UpdateView):
+class UpdateApar(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
     model = Apar
     #fields = '__all__'
     template_name = 'apar_updateview.html'
@@ -52,7 +69,8 @@ class UpdateApar(UpdateView):
         
         #return super().form_valid(form)
 
-class DetailApar(DetailView):
+class DetailApar(LoginRequiredMixin, DetailView):
+    login_url = 'login'
     model = Apar
     template_name = 'apar_detailview.html'
     #form_class = FormDetailApar
@@ -64,20 +82,24 @@ class DetailApar(DetailView):
         context['pemeriksaan_list'] = pemeriksaan_list
         return context
     
-class ScanMenu(DetailView):
+class ScanMenu(LoginRequiredMixin, DetailView):
+    login_url = 'login'
     model = Apar
     template_name = 'menu_scan.html'
         
-class CekApar(CreateView):
+class CekApar(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = Pemeriksaan
     template_name = 'pemeriksaan_createview.html'
     form_class = FormPemeriksaan
 
-class CekAparList(ListView):
+class CekAparList(LoginRequiredMixin, ListView):
+    login_url = 'login'
     model = Pemeriksaan
     template_name = 'pemeriksaan_listview.html'
     
-class CekAparById(CreateView):
+class CekAparById(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = Pemeriksaan
     template_name = 'pemeriksaanbyid_createview.html'
     form_class = FormPemeriksaanById
